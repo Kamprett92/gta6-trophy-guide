@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leonida Sunset — GTA VI Trophy Guide &amp; Tracker</title>
+<meta name="description" content="An offline guide and tracker for all 55 Grand Theft Auto VI trophies on PlayStation 5: official names, descriptions and grades, a roadmap to the platinum, missable flags, and a saved checklist.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="masthead">
+  <div class="masthead-text">
+    <p class="kicker">Grand Theft Auto VI &middot; PlayStation 5 &middot; 55 trophies</p>
+    <h1>Leonida Sunset</h1>
+    <p class="subtitle">The offline trophy guide &amp; tracker for GTA VI — every official name, description and grade, a roadmap to the platinum, and a guide in our own words for each trophy, with its sources.</p>
+    <p class="counts-line" id="gradeCounts">1 platinum &middot; 2 gold &middot; 6 silver &middot; 46 bronze</p>
+  </div>
+  <div class="progress-card" id="progressCard" aria-live="polite">
+    <p class="progress-big"><span id="earnedCount">0</span><span class="progress-of"> / 55 earned</span></p>
+    <div class="progress-track" role="progressbar" aria-label="Trophies earned" aria-valuemin="0" aria-valuemax="55" aria-valuenow="0" id="progressBar"><div class="progress-fill" id="progressFill"></div></div>
+    <p class="progress-grades" id="progressGrades">Platinum 0/1 &middot; Gold 0/2 &middot; Silver 0/6 &middot; Bronze 0/46</p>
+    <p class="progress-next" id="nextUp">Next up: finish the opening mission, Gone Fishing.</p>
+    <div class="progress-actions">
+      <button id="exportBtn" type="button">Export progress</button>
+      <label class="import-label">Import progress <input id="importFile" type="file" accept="application/json,.json"></label>
+      <button id="sampleBtn" type="button" title="Tick a sample set of 13 trophies, so you can see the tracker at work">Load sample progress</button>
+      <button id="resetBtn" type="button">Reset</button>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="Guide sections">
+  <button type="button" class="tab active" data-view="tracker" id="tabTracker">Tracker</button>
+  <button type="button" class="tab" data-view="roadmap" id="tabRoadmap">Roadmap to Platinum</button>
+  <button type="button" class="tab" data-view="missables" id="tabMissables">Missables <span class="tab-badge" id="missableBadge">9</span></button>
+  <button type="button" class="tab" data-view="about" id="tabAbout">About &amp; Sources</button>
+</nav>
+
+<main>
+  <section id="view-tracker" class="view">
+    <div class="toolbar">
+      <label class="search-label">Search <input id="searchInput" type="search" placeholder="Trophy name, mission or keyword…" autocomplete="off"></label>
+      <label>Kind
+        <select id="kindFilter">
+          <option value="all">All kinds</option>
+          <option value="story">Story</option>
+          <option value="collectibles">Collectibles</option>
+          <option value="activities">Activities</option>
+          <option value="misc">Misc &amp; open world</option>
+          <option value="missable">Missable only</option>
+          <option value="online">Online</option>
+        </select>
+      </label>
+      <label>Grade
+        <select id="gradeFilter">
+          <option value="all">All grades</option>
+          <option value="platinum">Platinum</option>
+          <option value="gold">Gold</option>
+          <option value="silver">Silver</option>
+          <option value="bronze">Bronze</option>
+        </select>
+      </label>
+      <label>Show
+        <select id="earnedFilter">
+          <option value="all">Earned &amp; unearned</option>
+          <option value="unearned">Unearned only</option>
+          <option value="earned">Earned only</option>
+        </select>
+      </label>
+      <label class="spoiler-toggle"><input id="spoilerToggle" type="checkbox"> Hide story spoilers</label>
+    </div>
+    <p class="spoiler-note" id="spoilerNote" hidden>Spoilers on: names and descriptions of unearned story trophies are hidden until you earn them.</p>
+    <p class="empty-state" id="onlineEmpty" hidden>The official list has no online trophies — every one of the 55 can be earned offline, in single-player. Nothing to show here, and that is good news for the platinum.</p>
+    <p class="empty-state" id="noResults" hidden>No trophies match those filters. Try clearing the search or choosing another kind.</p>
+    <ul class="trophy-list" id="trophyList"></ul>
+    <p class="list-foot" id="listFoot"></p>
+  </section>
+
+  <section id="view-roadmap" class="view" hidden>
+    <h2>Roadmap to the platinum</h2>
+    <p class="section-intro">Built from the official descriptions alone: five stages, in the order to play them. Story missions are replayable, so no chapter trophy is missable — the missable flags live in stage 5 and on the Missables tab, and only where the description implies a one-time moment.</p>
+    <ol class="roadmap" id="roadmapList"></ol>
+  </section>
+
+  <section id="view-missables" class="view" hidden>
+    <h2>Missable trophies</h2>
+    <p class="section-intro">Flagged only from what the official descriptions imply — a second try, a run of choices, a one-off moment or a chain that breaks if the conditions lapse. <strong>Story missions are replayable</strong>, so chapter-completion and mission trophies are not flagged missable. Where a place was not verified in-game, this guide says so instead of pinning one down.</p>
+    <ul class="trophy-list" id="missableList"></ul>
+  </section>
+
+  <section id="view-about" class="view" hidden>
+    <h2>About &amp; sources</h2>
+    <p>Leonida Sunset is an offline, open guide for the 55 PlayStation 5 trophies of Grand Theft Auto VI. It runs entirely from its own files: it makes no network request, saves your checklist in this browser's localStorage, and exports it as a JSON file you can import back.</p>
+    <h3>Where the facts come from</h3>
+    <ul>
+      <li>Official trophy names, descriptions and grades — <a href="https://www.exophase.com/game/grand-theft-auto-vi-psn/trophies/">Exophase: Grand Theft Auto VI trophies</a></li>
+      <li>Grades and the counts PlayStation tracks (42 Shooting Range challenges, 14 drone race locations, 9 activity types, 18 meditation spots, 52 Leonida areas, 9 gangs, 8 garage properties, 100 vehicles, 100 WAiNK locations, 3 card sets, 50 challenges, 250 stunts, 20 races, 5 bank vaults, 10 Scooter Bros vehicles, $250,000 laundering, $100,000 spent, 500 choices) — <a href="https://psnprofiles.com/trophies/43531-grand-theft-auto-vi">PSNProfiles: Grand Theft Auto VI trophies</a></li>
+      <li>Every per-trophy guide is written for this entry, in our own words, from the official description. A guide that repeats the description adds nothing, so each one says what to do, how, and what to watch for — and says plainly where a step was not verified in-game.</li>
+    </ul>
+    <h3>How the roadmap and missables were built</h3>
+    <p>Only from the official descriptions: which chapters and missions (Gone Fishing, Breakfast Run, The Cartel Heist, Child's Play, Headliners, VCIA Takedown, Operation Savage Glory, the final mission), which stranger strands (Andy, Kenton, Billy, Randy, Tyrone, Bret and 8 strands in all), and which collectible counts. Nothing here rests on an unverified location or an unplayed step.</p>
+    <h3>Your progress</h3>
+    <p>Ticking a trophy saves it in this browser only. Export downloads a JSON file of your earned trophies; import reads that file back. “Load sample progress” ticks a sample of 13 trophies so you can see the tracker working — it is a demo, not earned play, and Reset clears it.</p>
+    <p class="fine-print">An unofficial fan guide. Not affiliated with Rockstar Games or PlayStation. No Rockstar logo, official artwork or game screenshot is used anywhere in this guide.</p>
+  </section>
+
+  <aside class="detail-pane" id="detailPane" aria-label="Trophy guide" hidden>
+    <button type="button" class="detail-close" id="detailClose" aria-label="Close guide">&times;</button>
+    <div id="detailBody"></div>
+  </aside>
+</main>
+
+<footer>
+  <p>Leonida Sunset — an offline GTA VI trophy guide &amp; tracker. Official names, descriptions and grades: Exophase &amp; PSNProfiles (see About &amp; Sources). Guides in our own words.</p>
+</footer>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
